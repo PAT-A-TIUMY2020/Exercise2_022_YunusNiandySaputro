@@ -8,7 +8,6 @@ using System.Text;
 
 namespace Service_022_YunusNiandySaputro
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IService1" in both code and config file together.
     [ServiceContract]
     public interface ITI_UMY
     {
@@ -21,15 +20,15 @@ namespace Service_022_YunusNiandySaputro
         Mahasiswa GetMahasiswaByNIM(string nim); //mengambil data berdasarkan nim
 
         [OperationContract]
-        [WebInvoke(Method = "POST", UriTemplate = "Mahasiswa", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
+        [WebInvoke(Method = "POST", UriTemplate = "CreateMahasiswa", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
         string CreateMahasiswa(Mahasiswa mhs);
 
         [OperationContract]
-        [WebInvoke(Method = "DELETE", UriTemplate = "Mahasiswa", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
+        [WebInvoke(Method = "DELETE", UriTemplate = "DeleteMahasiswa/{nim}", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
         string DeleteMahasiswa(string nim);
 
         [OperationContract]
-        [WebInvoke(Method = "PUT", UriTemplate = "Mahasiswa", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
+        [WebInvoke(Method = "PUT", UriTemplate = "UpdateMahasiswaByNIM", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
         string UpdateMahasiswaByNIM(Mahasiswa mhs);
 
 
