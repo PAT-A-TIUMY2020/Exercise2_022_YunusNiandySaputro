@@ -2,13 +2,8 @@
 using RestSharp;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Client_022_YunusNiandySaputro
 {
@@ -94,21 +89,3 @@ namespace Client_022_YunusNiandySaputro
         }
     }
 }
-
-/*
- * 
- * List<Mahasiswa> data = getAllData();
-                for (int i = 0; i <= data.Count() - 1; i++)
-                {
-                    if (data[i].nim == nim)
-                    {
-                        data.RemoveAt(i);
-
-                        string output = JsonConvert.SerializeObject(data, Formatting.Indented);
-                        WebClient postData = new WebClient();
-                        postData.Headers.Add(HttpRequestHeader.ContentType, "application/json");
-                        string response = postData.UploadString(baseUrl + "DeleteMahasiswa", output);
-                        deleted = true;
-                    }
-                }
- */
