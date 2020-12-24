@@ -1,9 +1,11 @@
 ﻿using Newtonsoft.Json;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
@@ -63,7 +65,7 @@ namespace Client_022_YunusNiandySaputro
                     {
                         data[i] = mhs;
 
-                        string output = JsonConvert.SerializeObject(data, Formatting.Indented);
+                        string output = JsonConvert.SerializeObject(mhs, Formatting.Indented);
                         WebClient postData = new WebClient();
                         postData.Headers.Add(HttpRequestHeader.ContentType, "application/json");
                         string response = postData.UploadString(baseUrl + "UpdateMahasiswaByNIM", output);
@@ -83,18 +85,9 @@ namespace Client_022_YunusNiandySaputro
             bool deleted = false;
             try
             {
-                
-                WebClient postData = new WebClient();
-                postData.Headers.Add(HttpRequestHeader.ContentType, "application/json");
-
-                MemoryStream ms = new MemoryStream();
-                string output = JsonConvert.SerializeObject(nim);
-                DataContractSerializer ser = new DataContractSerializer(typeof(string));
-                ser.WriteObject(ms, nim);
-
-                byte[] data = postData.UploadData(baseUrl, "DeleteMahasiswa", )
-                string response = postData.UploadString(baseUrl + "DeleteMahasiswa", output);
-                deleted = true;
+                var client = new RestClient(baseUrl);
+                var request = new RestRequest("DeleteMahasiswa/" + nim, Method.DELETE);
+                client.Execute(request);
             }
             catch (Exception ex)
             {

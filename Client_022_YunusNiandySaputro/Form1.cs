@@ -95,7 +95,7 @@ namespace Client_022_YunusNiandySaputro
 
                 ClassData classData = new ClassData();
                 classData.updateDatabase(mhs, tNIM.Text);
-                classData.getAllData();
+                dataGridView1.DataSource = classData.getAllData();
             }
             catch
             {
@@ -112,7 +112,8 @@ namespace Client_022_YunusNiandySaputro
                 {
                     ClassData classData = new ClassData();
                     classData.deleteMahasiswa(tNIM.Text);
-                    classData.getAllData();
+                    clear();
+                    dataGridView1.DataSource = classData.getAllData();
                 }
                 catch (Exception ex)
                 {
