@@ -32,7 +32,8 @@ namespace Client_022_YunusNiandySaputro
                 string angkatan = tAngkatan.Text;
                 classData.insertMahasiswa(nim, nama, prodi, angkatan);
                 clear();
-                label7.Text = "Data Successfully inserted";
+                dataGridView1.DataSource = classData.getAllData();
+                MessageBox.Show("Data successfuly inserted");
             }
             catch (Exception ex)
             {
@@ -56,11 +57,14 @@ namespace Client_022_YunusNiandySaputro
 
         private void btSearch_Click(object sender, EventArgs e)
         {
-            string nim = tNIM.Text;
-            List<Mahasiswa> mhs = new List<Mahasiswa>();
-            mhs.Add(classData.search(nim));
-            clear();
-            dataGridView1.DataSource = mhs;
+            if (tNIM.Text != "")
+            {
+                string nim = tNIM.Text;
+                List<Mahasiswa> mhs = new List<Mahasiswa>();
+                mhs.Add(classData.search(nim));
+                clear();
+                dataGridView1.DataSource = mhs;
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -71,7 +75,7 @@ namespace Client_022_YunusNiandySaputro
             }
             catch
             {
-
+                label7.Text = "Server error";
             }
         }
 
@@ -100,12 +104,13 @@ namespace Client_022_YunusNiandySaputro
 
                 ClassData classData = new ClassData();
                 classData.updateDatabase(mhs, tNIM.Text);
+                MessageBox.Show("Data successfuly updated");
                 clear();
                 dataGridView1.DataSource = classData.getAllData();
             }
             catch
             {
-
+                label7.Text = "Server Error";
             }
 
         }
@@ -120,10 +125,11 @@ namespace Client_022_YunusNiandySaputro
                     classData.deleteMahasiswa(tNIM.Text);
                     clear();
                     dataGridView1.DataSource = classData.getAllData();
+                    MessageBox.Show("Data successfuly deleted");
                 }
                 catch (Exception ex)
                 {
-
+                    label7.Text = "Server Error";
                 }
             }
         }
@@ -134,6 +140,9 @@ namespace Client_022_YunusNiandySaputro
             tNama.Text = "";
             tProdi.Text = "";
             tAngkatan.Text = "";
+            button3.Enabled = false;
+            button4.Enabled = false;
+            button2.Enabled = true;
             dataGridView1.DataSource = null;
         }
 
