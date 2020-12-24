@@ -33,8 +33,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ServiceRest_022_YunusNiandySaputro">
-      <HintPath>..\..\ServiceRest_022_YunusNiandySaputro\ServiceRest_022_YunusNiandySaputro\bin\Debug\ServiceRest_022_YunusNiandySaputro.dll</HintPath>
+    <Reference Include="Service_022_YunusNiandySaputro">
+      <HintPath>..\Service_022_YunusNiandySaputro\bin\Debug\Service_022_YunusNiandySaputro.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
