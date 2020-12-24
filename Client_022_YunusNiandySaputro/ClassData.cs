@@ -28,14 +28,11 @@ namespace Client_022_YunusNiandySaputro
             string response = postData.UploadString(baseUrl + "CreateMahasiswa", data);
         }
 
-        public void search(string nim)
+        public Mahasiswa search(string nim)
         {
-            Mahasiswa mhs = new Mahasiswa();
-            mhs.nim = nim;
-            var data = JsonConvert.SerializeObject(nim);
-            var postData = new WebClient();
-            postData.Headers.Add(HttpRequestHeader.ContentType, "application/json");
-            string response = postData.UploadString(baseUrl + "Mahasiswa", data);
+            var json = new WebClient().DownloadString("http://localhost:1907/Mahasiswa/nim=" + nim);
+            var data = JsonConvert.DeserializeObject<Mahasiswa>(json);
+            return data;
         }
 
         public string sumData()
@@ -69,7 +66,7 @@ namespace Client_022_YunusNiandySaputro
                         string output = JsonConvert.SerializeObject(data, Formatting.Indented);
                         WebClient postData = new WebClient();
                         postData.Headers.Add(HttpRequestHeader.ContentType, "application/json");
-                        string response = postData.UploadString(baseUrl + "UpdateMahasiswa", output);
+                        string response = postData.UploadString(baseUrl + "UpdateMahasiswaByNIM", output);
                         updated = true;
                     }
                 }
