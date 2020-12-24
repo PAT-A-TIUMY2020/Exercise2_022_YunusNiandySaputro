@@ -9,7 +9,7 @@ namespace Client_022_YunusNiandySaputro
 {
     class ClassData
     {
-        string baseUrl = "http://localhost:1907/";
+        string baseUrl = "http://localhost:3139/";
 
         public void insertMahasiswa(string nim, string nama, string prodi, string angkatan)
         {
@@ -27,14 +27,14 @@ namespace Client_022_YunusNiandySaputro
 
         public Mahasiswa search(string nim)
         {
-            var json = new WebClient().DownloadString("http://localhost:1907/Mahasiswa/" + nim);
+            var json = new WebClient().DownloadString("http://localhost:3139/Mahasiswa/" + nim);
             var data = JsonConvert.DeserializeObject<Mahasiswa>(json);
             return data;
         }
 
         public string sumData()
         {
-            var json = new WebClient().DownloadString("http://localhost:1907/Mahasiswa");
+            var json = new WebClient().DownloadString("http://localhost:3139/Mahasiswa");
             var data = JsonConvert.DeserializeObject<List<Mahasiswa>>(json);
             int i = data.Count();
             string sum = i.ToString();
@@ -43,7 +43,7 @@ namespace Client_022_YunusNiandySaputro
 
         public List<Mahasiswa> getAllData()
         {
-            var json = new WebClient().DownloadString("http://localhost:1907/Mahasiswa");
+            var json = new WebClient().DownloadString("http://localhost:3139/Mahasiswa");
             var data = JsonConvert.DeserializeObject<List<Mahasiswa>>(json);
             return data;
         }
