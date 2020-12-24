@@ -18,25 +18,35 @@ namespace Client_022_YunusNiandySaputro
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (tNIM.Text.Length <= 12 && 
+            if (tNIM.Text != "" &&
+                tNama.Text != "" &&
+                tProdi.Text != "" &&
+                tAngkatan.Text != "")
+            {
+                if (tNIM.Text.Length <= 12 &&
                 tAngkatan.Text.Length <= 4 &&
                 tProdi.Text.Length <= 30 &&
                 tNama.Text.Length <= 20)
-            {
-                try
                 {
-                    string nim = tNIM.Text;
-                    string nama = tNama.Text;
-                    string prodi = tProdi.Text;
-                    string angkatan = tAngkatan.Text;
-                    classData.insertMahasiswa(nim, nama, prodi, angkatan);
-                    clear();
-                    dataGridView1.DataSource = classData.getAllData();
-                    MessageBox.Show("Data successfuly inserted");
+                    try
+                    {
+                        string nim = tNIM.Text;
+                        string nama = tNama.Text;
+                        string prodi = tProdi.Text;
+                        string angkatan = tAngkatan.Text;
+                        classData.insertMahasiswa(nim, nama, prodi, angkatan);
+                        clear();
+                        dataGridView1.DataSource = classData.getAllData();
+                        MessageBox.Show("Data successfuly inserted");
+                    }
+                    catch (Exception ex)
+                    {
+                        label7.Text = "Server Error";
+                    }
                 }
-                catch (Exception ex)
+                else
                 {
-                    label7.Text = "Server Error";
+                    MessageBox.Show("Please check your data");
                 }
             }
             else
@@ -98,28 +108,38 @@ namespace Client_022_YunusNiandySaputro
 
         private void button4_Click(object sender, EventArgs e)
         {
-            if (tNIM.Text.Length <= 12 &&
+            if (tNIM.Text != "" &&
+                tNama.Text != "" &&
+                tProdi.Text != "" &&
+                tAngkatan.Text != "")
+            {
+                if (tNIM.Text.Length <= 12 &&
                 tAngkatan.Text.Length <= 4 &&
                 tProdi.Text.Length <= 30 &&
                 tNama.Text.Length <= 20)
-            {
-                try
                 {
-                    Mahasiswa mhs = new Mahasiswa();
-                    mhs.nim = tNIM.Text;
-                    mhs.nama = tNama.Text;
-                    mhs.prodi = tProdi.Text;
-                    mhs.angkatan = tAngkatan.Text;
+                    try
+                    {
+                        Mahasiswa mhs = new Mahasiswa();
+                        mhs.nim = tNIM.Text;
+                        mhs.nama = tNama.Text;
+                        mhs.prodi = tProdi.Text;
+                        mhs.angkatan = tAngkatan.Text;
 
-                    ClassData classData = new ClassData();
-                    classData.updateDatabase(mhs);
-                    MessageBox.Show("Data successfuly updated");
-                    clear();
-                    dataGridView1.DataSource = classData.getAllData();
+                        ClassData classData = new ClassData();
+                        classData.updateDatabase(mhs);
+                        MessageBox.Show("Data successfuly updated");
+                        clear();
+                        dataGridView1.DataSource = classData.getAllData();
+                    }
+                    catch
+                    {
+                        label7.Text = "Server Error";
+                    }
                 }
-                catch
+                else
                 {
-                    label7.Text = "Server Error";
+                    MessageBox.Show("Please check your data");
                 }
             }
             else
