@@ -63,13 +63,10 @@ namespace Client_022_YunusNiandySaputro
                 {
                     if (data[i].nim == nim)
                     {
-                        data[i] = mhs;
-
-                        string output = JsonConvert.SerializeObject(mhs, Formatting.Indented);
-                        WebClient postData = new WebClient();
-                        postData.Headers.Add(HttpRequestHeader.ContentType, "application/json");
-                        string response = postData.UploadString(baseUrl + "UpdateMahasiswaByNIM", output);
-                        updated = true;
+                        var client = new RestClient(baseUrl);
+                        var request = new RestRequest("UpdateMahasiswaByNIM", Method.PUT);
+                        request.AddJsonBody(mhs);
+                        client.Execute(request);
                     }
                 }
             }
