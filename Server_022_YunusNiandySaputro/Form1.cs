@@ -17,7 +17,7 @@ namespace Exercise2_022_YunusNiandySaputro
 {
     public partial class Form1 : Form
     {
-        //ServiceHost hostObject;
+        ServiceHost hostObject;
 
         public Form1()
         {
@@ -28,17 +28,19 @@ namespace Exercise2_022_YunusNiandySaputro
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ServiceHost hostObject = null; 
+            hostObject = null; 
 
             try
             {
-                hostObject = new ServiceHost(typeof(TI_UMY));
-                hostObject.Open();
+                Task.Factory.StartNew(() =>
+                {
+                    hostObject = new ServiceHost(typeof(TI_UMY));
+                    hostObject.Open();
+                });
                 label2.Text = "Server ON";
                 label3.Text = "Klik OFF untuk menonaktifkan server";
                 button1.Enabled = false;
                 button2.Enabled = true;
-                hostObject.Close();
             }
             catch (Exception ex)
             {
@@ -49,11 +51,8 @@ namespace Exercise2_022_YunusNiandySaputro
 
         private void button2_Click(object sender, EventArgs e)
         {
-            ServiceHost hostObject = null;
-
             try
             {
-                hostObject = new ServiceHost(typeof(TI_UMY));
                 hostObject.Abort();
                 label2.Text = "Server OFF";
                 label3.Text = "Klik ON untuk menghidupkan server";
