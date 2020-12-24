@@ -48,22 +48,15 @@ namespace Client_022_YunusNiandySaputro
             return data;
         }
 
-        public bool updateDatabase(Mahasiswa mhs, string nim)
+        public bool updateDatabase(Mahasiswa mhs)
         {
             bool updated = false;
             try
             {
-                List<Mahasiswa> data = getAllData();
-                for (int i = 0; i <= data.Count() - 1; i++)
-                {
-                    if (data[i].nim == nim)
-                    {
-                        var client = new RestClient(baseUrl);
-                        var request = new RestRequest("UpdateMahasiswaByNIM", Method.PUT);
-                        request.AddJsonBody(mhs);
-                        client.Execute(request);
-                    }
-                }
+                var client = new RestClient(baseUrl);
+                var request = new RestRequest("UpdateMahasiswaByNIM", Method.PUT);
+                request.AddJsonBody(mhs);
+                client.Execute(request);
             }
             catch (Exception ex)
             {

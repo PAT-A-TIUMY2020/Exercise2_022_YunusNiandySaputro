@@ -112,7 +112,7 @@ namespace Client_022_YunusNiandySaputro
                     mhs.angkatan = tAngkatan.Text;
 
                     ClassData classData = new ClassData();
-                    classData.updateDatabase(mhs, tNIM.Text);
+                    classData.updateDatabase(mhs);
                     MessageBox.Show("Data successfuly updated");
                     clear();
                     dataGridView1.DataSource = classData.getAllData();
