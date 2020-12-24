@@ -16,7 +16,7 @@ namespace Service_022_YunusNiandySaputro
         List<Mahasiswa> GetAllMahasiswa(); // Mendapatkan kumpulan mahasiswa / seluruh data mahasiswa
 
         [OperationContract]
-        [WebGet(UriTemplate = "Mahasiswa/nim={nim}", ResponseFormat = WebMessageFormat.Json)] // untuk get
+        [WebGet(UriTemplate = "Mahasiswa/{nim}", ResponseFormat = WebMessageFormat.Json)] // untuk get
         Mahasiswa GetMahasiswaByNIM(string nim); //mengambil data berdasarkan nim
 
         [OperationContract]

@@ -27,7 +27,7 @@ namespace Client_022_YunusNiandySaputro
 
         public Mahasiswa search(string nim)
         {
-            var json = new WebClient().DownloadString("http://localhost:1907/Mahasiswa/nim=" + nim);
+            var json = new WebClient().DownloadString("http://localhost:1907/Mahasiswa/" + nim);
             var data = JsonConvert.DeserializeObject<Mahasiswa>(json);
             return data;
         }
