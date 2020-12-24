@@ -31,6 +31,7 @@ namespace Client_022_YunusNiandySaputro
                 string prodi = tProdi.Text;
                 string angkatan = tAngkatan.Text;
                 classData.insertMahasiswa(nim, nama, prodi, angkatan);
+                clear();
                 label7.Text = "Data Successfully inserted";
             }
             catch (Exception ex)
@@ -56,6 +57,10 @@ namespace Client_022_YunusNiandySaputro
         private void btSearch_Click(object sender, EventArgs e)
         {
             string nim = tNIM.Text;
+            List<Mahasiswa> mhs = new List<Mahasiswa>();
+            mhs.Add(classData.search(nim));
+            clear();
+            dataGridView1.DataSource = mhs;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -95,6 +100,7 @@ namespace Client_022_YunusNiandySaputro
 
                 ClassData classData = new ClassData();
                 classData.updateDatabase(mhs, tNIM.Text);
+                clear();
                 dataGridView1.DataSource = classData.getAllData();
             }
             catch
@@ -128,6 +134,12 @@ namespace Client_022_YunusNiandySaputro
             tNama.Text = "";
             tProdi.Text = "";
             tAngkatan.Text = "";
+            dataGridView1.DataSource = null;
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            clear();
         }
     }
 }
